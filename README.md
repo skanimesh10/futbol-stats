@@ -2,7 +2,7 @@
 
 A simple Streamlit app for football statistics.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://futbol-stats.streamlit.app/)
 
 ### How to run it on your own machine
 
