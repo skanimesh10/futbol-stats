@@ -75,7 +75,7 @@ def create_circular_comparison(df):
     top_two_teams = df.nsmallest(2, 'Rank')['Team'].tolist()
     default_team1, default_team2 = top_two_teams
 
-    Allow user to select teams for comparison with the top two as default
+    # Allow user to select teams for comparison with the top two as default
     team1 = st.selectbox("Select first team", df['Team'].unique(), index=df['Team'].tolist().index(default_team1))
     team2 = st.selectbox("Select second team", df['Team'].unique(), index=df['Team'].tolist().index(default_team2))
 
