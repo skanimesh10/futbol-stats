@@ -71,9 +71,14 @@ def create_bar_chart(df):
     return bar_fig
 
 def create_circular_comparison(df):
-    # Allow user to select two teams for comparison
-    team1 = st.selectbox("Select first team", df['Team'].unique())
-    team2 = st.selectbox("Select second team", df['Team'].unique())
+    # Automatically select the top two teams based on rank
+    top_two_teams = df.nsmallest(2, 'Rank')['Team'].tolist()
+    default_team1, default_team2 = top_two_teams
+
+    Allow user to select teams for comparison with the top two as default
+    team1 = st.selectbox("Select first team", df['Team'].unique(), index=df['Team'].tolist().index(default_team1))
+    team2 = st.selectbox("Select second team", df['Team'].unique(), index=df['Team'].tolist().index(default_team2))
+
 
     # Get data for selected teams
     team1_data = df[df['Team'] == team1].iloc[0]
@@ -87,14 +92,15 @@ def create_circular_comparison(df):
         r=[team1_data[cat] for cat in categories],
         theta=categories,
         fill='toself',
-        name=team1
+        name=team1,
+        line_color='blue'
     ))
     circle_fig.add_trace(go.Scatterpolar(
         r=[team2_data[cat] for cat in categories],
         theta=categories,
         fill='toself',
         name=team2,
-        line_color='red'
+        line_color='lightblue'
     ))
 
     circle_fig.update_layout(
